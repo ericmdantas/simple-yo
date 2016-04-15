@@ -9,10 +9,12 @@ module.exports = class MainGenerator extends yeoman.Base {
     super(args, options, config);
   }
 
+  log() {
+    this.log(yosay('Welcome to the kickass ' + chalk.red('generator-simple-yo') + ' generator!'));
+  }
+
   prompting() {
     let done = this.async();
-
-    this.log(yosay('Welcome to the kickass ' + chalk.red('generator-simple-yo') + ' generator!'));
 
     let prompts = [{
       name: 'myName',
