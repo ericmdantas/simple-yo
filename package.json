@@ -11,7 +11,7 @@
   "files": [
     "generators"
   ],
-  "main": "generators\\index.js",
+  "main": "app/index.js",
   "keywords": [
     "simple-yo",
     "yeoman-generator"
@@ -23,28 +23,12 @@
   },
   "devDependencies": {
     "yeoman-test": "^1.0.0",
-    "yeoman-assert": "^2.0.0",
-    "eslint": "^2.1.0",
-    "eslint-config-xo-space": "^0.10.0",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^2.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-line-ending-corrector": "^1.0.1",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-mocha": "^2.0.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-nsp": "^2.1.0"
-  },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
-    }
+    "yeoman-assert": "^2.0.0"
   },
   "repository": "https://github.com/ericmdantas/simple-yo.git",
   "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "prepublish": "npm t",
+    "test": "mocha test/**/*.js"
   },
   "license": "MIT"
 }

@@ -12,7 +12,7 @@ describe('generator-simple-yo:app', function () {
 
   it('creates files', function () {
     assert.file([
-      'dummyfile.txt'
+      'new_dummyfile.txt'
     ]);
   });
 });

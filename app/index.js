@@ -1,41 +1,36 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 
-module.exports = yeoman.Base.extend({
+const yeoman = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
 
-  prompting: function () {
-    var done = this.async();
+module.exports = class MainGenerator extends yeoman.Base {
+  constructor(args, options, config) {
+    super(args, options, config);
+  }
 
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the kickass ' + chalk.red('generator-simple-yo') + ' generator!'
-    ));
+  prompting() {
+    let done = this.async();
 
-    var prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
-      default: true
+    this.log(yosay('Welcome to the kickass ' + chalk.red('generator-simple-yo') + ' generator!'));
+
+    let prompts = [{
+      name: 'myName',
+      message: 'Whats your name?',
+      default: 'your name goes here :D'
     }];
 
-    this.prompt(prompts, function (props) {
-      this.props = props;
-      // To access props later use this.props.someAnswer;
-
+    this.prompt(prompts, (props) => {
+      this.myName = props.myName;
       done();
-    }.bind(this));
-  },
+    });
+  }
 
-  writing: function () {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
-  },
+  writing() {
+    this.template('dummyfile.txt', 'new_dummyfile.txt', {name: this.myName});
+  }
 
-  install: function () {
+  install() {
     this.installDependencies();
   }
-});
+}
